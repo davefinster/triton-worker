@@ -44,4 +44,3 @@ process.on('SIGINT', function() {
 process.on('SIGTERM', function() {
   process.exit();
 });
-stayAlive();

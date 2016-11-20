@@ -3,6 +3,7 @@ FROM mhart/alpine-node:7.1.0
 COPY ./setup.js /usr/bin/container-setup/setup
 COPY ./package.json /usr/bin/container-setup/package.json
 COPY ./bash_shell /usr/bin/bash_shell
+COPY ./container_start /usr/bin/container_start
 
 RUN apk update \
 && apk add bash git curl make python openssh openssl\
@@ -18,6 +19,7 @@ RUN apk update \
 && chmod +x /usr/bin/container-setup/setup \
 && cd /usr/bin/container-setup \
 && npm install \
-&& chmod +x /usr/bin/bash_shell
+&& chmod +x /usr/bin/bash_shell \
+&& chmod +x /usr/bin/container_start
 
-ENTRYPOINT [ "/usr/bin/bash_shell"]
+ENTRYPOINT [ "/usr/bin/container_start"]

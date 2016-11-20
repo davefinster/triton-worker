@@ -1,0 +1,4 @@
+#!/bin/bash
+node /usr/bin/container-setup/setup
+source /root/env_source
+/bin/bash
