@@ -1,0 +1,11 @@
+{
+  "name": "container-setup",
+  "version": "0.0.1",
+  "description": "",
+  "main": "setup.js",
+  "dependencies": {
+    "sshpk":"1.10.1"
+  },
+  "author": "Dave Finster <df@docketbook.io>",
+  "license": "MIT"
+}
