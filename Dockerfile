@@ -20,4 +20,4 @@ RUN apk update \
 && npm install \
 && chmod +x /usr/bin/bash_shell
 
-ENTRYPOINT [ "/usr/bin/container-setup/setup"]
+ENTRYPOINT [ "/usr/bin/bash_shell"]
