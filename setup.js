@@ -1,6 +1,12 @@
 #!/usr/bin/env node
 var sshpk = require('sshpk');
 var fs = require('fs');
+try {
+	fs.statSync("/root/.ssh/id_rsa.pub")
+	process.exit(0);
+}catch(err) {
+	console.log("Performing Setup");
+}
 var childProcess = require('child_process');
 var privateKeyString = new Buffer(process.env["T_KEY"], 'base64').toString();
 var privateKey = sshpk.parsePrivateKey(privateKeyString.toString(), 'ssh');
