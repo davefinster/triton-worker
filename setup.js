@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 var sshpk = require('sshpk');
 var fs = require('fs');
+var exportLines = [];
 try {
 	fs.statSync("/root/.ssh/id_rsa.pub")
 	process.exit(0);
@@ -9,6 +10,7 @@ try {
 }
 var childProcess = require('child_process');
 if (process.env["T_KEY"] === undefined) {
+	fs.writeFileSync("/root/env_source", exportLines.join('\n'));
 	console.log("Skipping Setup - No Key");
 	process.exit();
 }
@@ -17,7 +19,6 @@ var privateKey = sshpk.parsePrivateKey(privateKeyString.toString(), 'ssh');
 var publicKey = privateKey.toPublic();
 fs.writeFileSync("/root/.ssh/id_rsa.pub", publicKey.toString());
 fs.writeFileSync("/root/.ssh/id_rsa", privateKey.toString());
-var exportLines = [];
 if ((process.env["T_URL"] !== undefined) 
 	&& (process.env["T_USER"] !== undefined)) {
 	var tritonProfile = {
