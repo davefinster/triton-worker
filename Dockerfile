@@ -10,6 +10,9 @@ RUN apk update \
 && npm install -g triton manta \
 && cd ~ \
 && mkdir .ssh \
+&& curl -O https://manta.bne.blenco.net.au/davefinster/public/gitlab-runner-helper \
+&& mv gitlab-runner-helper /usr/bin/gitlab-runner-helper \
+&& chmod +x /usr/bin/gitlab-runner-helper \
 && curl -O https://get.docker.com/builds/Linux/x86_64/docker-latest.tgz \
 && tar -zxvf docker-latest.tgz \
 && mv docker/docker /usr/bin/docker \
