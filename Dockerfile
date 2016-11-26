@@ -5,9 +5,8 @@ COPY ./package.json /usr/bin/container-setup/package.json
 COPY ./bash_shell /usr/bin/bash_shell
 COPY ./container_start /usr/bin/container_start
 
-RUN apk update \
-&& apk add bash git curl make python openssh openssl\
-&& npm install -g triton manta \
+RUN apk add --no-cache bash git curl make python-dev py-pip python build-base openssh openssl\
+&& npm install -g triton manta json \
 && cd ~ \
 && mkdir .ssh \
 && curl -O https://manta.bne.blenco.net.au/davefinster/public/gitlab-runner-helper \
@@ -23,6 +22,7 @@ RUN apk update \
 && cd /usr/bin/container-setup \
 && npm install \
 && chmod +x /usr/bin/bash_shell \
-&& chmod +x /usr/bin/container_start
+&& chmod +x /usr/bin/container_start \
+&& pip install --upgrade docker-compose==1.7.0
 
 ENTRYPOINT [ "/usr/bin/container_start"]
