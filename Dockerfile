@@ -23,6 +23,10 @@ RUN apk add --no-cache bash git curl make python-dev py-pip python build-base op
 && npm install \
 && chmod +x /usr/bin/bash_shell \
 && chmod +x /usr/bin/container_start \
-&& pip install --upgrade docker-compose==1.7.0
+&& pip install --upgrade docker-compose==1.7.0 \
+&& cd /etc \
+&& curl -O https://curl.haxx.se/ca/cacert.pem 
+
+ENV CURL_CA_BUNDLE=/etc/cacert.pem
 
 ENTRYPOINT [ "/usr/bin/container_start"]
