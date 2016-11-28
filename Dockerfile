@@ -13,6 +13,8 @@ RUN apk add --no-cache bash git curl make python-dev py-pip python build-base op
 && mv gitlab-runner-helper /usr/bin/gitlab-runner-helper \
 && chmod +x /usr/bin/gitlab-runner-helper \
 && curl -O https://get.docker.com/builds/Linux/x86_64/docker-latest.tgz \
+&& curl -L https://github.com/docker/machine/releases/download/v0.8.2/docker-machine-`uname -s`-`uname -m` > /usr/bin/docker-machine \
+&& chmod +x /usr/bin/docker-machine \
 && tar -zxvf docker-latest.tgz \
 && mv docker/docker /usr/bin/docker \
 && chmod +x /usr/bin/docker \
